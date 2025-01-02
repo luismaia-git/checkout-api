@@ -1,4 +1,4 @@
- .#!/bin/bash
+#!/bin/bash
 
 # Function to start WireMock if not running
 start_wiremock() {
@@ -10,7 +10,7 @@ start_wiremock() {
 
   if [ -z "$WIREMOCK_RUNNING" ]; then
     echo "WireMock on port $port is not running. Starting WireMock..."
-    java -jar ./wiremock/wiremock-standalone-2.14.0.jar --port $port --verbose &> $log_file 2>&1 &
+    java -jar ./wiremock1/wiremock-standalone-2.14.0.jar --port $port --verbose &> $log_file 2>&1 &
     echo "WireMock started on host $host and port $port. PID: $!"
   else
     echo "WireMock on port $port is already running."
@@ -35,9 +35,10 @@ start_postgres() {
   fi
 }
 
-# Start WireMock instances
-start_wiremock 8082 ./wiremock/wiremock.log
-start_wiremock 8083 ./wiremock/wiremock2.log
-
 # Start PostgreSQL container
 start_postgres
+
+# Start WireMock instances
+start_wiremock 8082 ./wiremock/wiremock.log
+start_wiremock 8083 ./wiremock2/wiremock2.log
+
