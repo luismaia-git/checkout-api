@@ -32,14 +32,13 @@ import java.math.BigInteger;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class AbstractPromotion implements IPromotion {
+public abstract class AbstractPromotion {
 
     private String id;
 
     @Builder.ObtainVia(method = "getType")
     private PromotionType type;
-
-    @Override
+    
     public abstract PromotionApplied applyPromotion(int quantity, BigInteger pricePerUnit, BigDecimal total);
 
     public abstract Boolean isApplicable(int quantity, BigInteger pricePerUnit);

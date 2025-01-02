@@ -1,11 +1,10 @@
-package com.qikserve.checkout.repository.product;
+package com.qikserve.checkout.service;
 
 import com.qikserve.checkout.exception.product.notfound.ProductNotFoundException;
 import com.qikserve.checkout.exception.wiremock.WiremockUnavailableException;
 import com.qikserve.checkout.model.dto.product.Product;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
@@ -13,13 +12,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.List;
 
-@Repository
-public class WiremockProductRepository implements ProductRepository {
+@Service
+public class WiremockService {
 
     private final RestTemplate restTemplate;
 
-    @Autowired
-    public WiremockProductRepository(RestTemplate restTemplate) {
+    public WiremockService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
@@ -32,7 +30,7 @@ public class WiremockProductRepository implements ProductRepository {
         }
     }
 
-    @Override
+
     public Product findById(String productId, String baseUrl) {
         String url = baseUrl + "/products/" + productId;
 
@@ -44,7 +42,6 @@ public class WiremockProductRepository implements ProductRepository {
         }
     }
 
-    @Override
     public List<Product> findProductsByIds(List<String> productsIds, String baseUrl) {
         List<Product> products = Arrays.asList(get(baseUrl + "/products", Product[].class));
         return products.stream()
@@ -52,7 +49,6 @@ public class WiremockProductRepository implements ProductRepository {
                 .toList();
     }
 
-    @Override
     public List<Product> findAll(String baseUrl) {
         return Arrays.asList(get(baseUrl + "/products", Product[].class));
     }
