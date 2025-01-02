@@ -5,16 +5,11 @@ import com.qikserve.checkout.model.entities.cart.CartItem;
 import com.qikserve.checkout.model.entities.cart.CartStatus;
 import com.qikserve.checkout.repository.cart.CartItemRepository;
 import com.qikserve.checkout.repository.cart.CartRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
-
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
