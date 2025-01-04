@@ -81,10 +81,7 @@ public class CartTests {
 
         cartRepository.save(cart);
 
-        Cart anotherCart = Cart.builder()
-                .tenantId("2")
-                .status(CartStatus.OPEN)
-                .build();
+        Cart anotherCart = CartFactory.makeCart();
 
         cartRepository.save(anotherCart);
 
