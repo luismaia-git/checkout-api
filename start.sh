@@ -39,6 +39,6 @@ start_postgres() {
 start_postgres
 
 # Start WireMock instances
-start_wiremock 8082 ./wiremock/wiremock.log
+start_wiremock 8082 ./wiremock1/wiremock.log
 start_wiremock 8083 ./wiremock2/wiremock2.log
 
