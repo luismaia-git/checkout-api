@@ -3,13 +3,10 @@ package com.qikserve.checkout.model.dto.promotion.base;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.qikserve.checkout.model.dto.promotion.PromotionApplied;
 import com.qikserve.checkout.model.dto.promotion.implementations.BuyXGetYFreePromotion;
 import com.qikserve.checkout.model.dto.promotion.implementations.FlatPercentPromotion;
 import com.qikserve.checkout.model.dto.promotion.implementations.QtyBasedPriceOverridePromotion;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,14 +29,13 @@ import java.math.BigInteger;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class AbstractPromotion implements IPromotion {
+public abstract class AbstractPromotion {
 
     private String id;
 
     @Builder.ObtainVia(method = "getType")
     private PromotionType type;
 
-    @Override
     public abstract PromotionApplied applyPromotion(int quantity, BigInteger pricePerUnit, BigDecimal total);
 
     public abstract Boolean isApplicable(int quantity, BigInteger pricePerUnit);

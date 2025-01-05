@@ -18,6 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @With
+@EqualsAndHashCode
 public class CartSummary {
 
     @Id
@@ -33,6 +34,7 @@ public class CartSummary {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @EqualsAndHashCode.Exclude
     private List<CheckoutCartItem> items = new ArrayList<>();
 
     @Embedded
@@ -46,5 +48,6 @@ public class CartSummary {
     private int total;
 
     @Column(name = "checkout_date" , updatable = false)
+    @EqualsAndHashCode.Exclude
     private LocalDateTime checkoutDate;
 }
