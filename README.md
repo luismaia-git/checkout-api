@@ -10,6 +10,7 @@ The API is designed to support tenant configurations with a focus on scalability
 * **Spring Data JPA:** Spring Data JPA repositories provide a convenient abstraction for database access.  Custom queries are implemented for calculating aggregate values like cart totals.
 * **Services:**  Business logic is encapsulated in service classes (`ProductService`, `TenantService`, `CartService`, `CartItemService`, `WiremockService`, `CartSummaryService`).
 * **Validation:** Spring Validation is used to validate incoming request parameters.
+* **Internationalization:** Error messages are externalized in `messages.properties` files to support multiple languages.
 * **Custom Exceptions:** Custom exceptions, such as `CartNotOpenException`, are used to handle specific error conditions and provide more informative error messages.
 * **Controller Advice:** A `GlobalExceptionHandler` is implemented to handle exceptions globally and return consistent error responses to the client.
 
