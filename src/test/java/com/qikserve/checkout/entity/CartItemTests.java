@@ -50,7 +50,7 @@ public class CartItemTests {
 
         List<CartItem> cartItems = cartItemRepository.findAll();
 
-        assertEquals(3, cartItems.size());
+        assertEquals(2, cartItems.size());
         assertTrue(cartItems.contains(cartItem));
         assertTrue(cartItems.contains(anotherCartItem));
     }

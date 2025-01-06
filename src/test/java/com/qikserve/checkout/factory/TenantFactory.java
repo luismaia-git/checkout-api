@@ -8,6 +8,7 @@ public class TenantFactory {
         return Tenant.builder()
                 .name("tenant")
                 .baseUrl("http://localhost:8080")
+                .mappers("mappers")
                 .build();
     }
 }

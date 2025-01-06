@@ -108,7 +108,7 @@ The API is organized around these resources:
 
 <b>2. What was the most useful feature that was added to the latest version of your chosen language? Please include a snippet of code that
 shows how you've used it.</b>
-<br/>In the latest version of Java (Java 23).
+<br/>In the latest version of Java (Java 21).
 
 <b>3. What did you find most difficult?</b>
 <br/>Creating a scalable system with good practices, so that adding new tenants was as simple as possible, without changing the source code. **
