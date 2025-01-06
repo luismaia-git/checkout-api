@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 public class CartSummaryService implements ICartSummaryService{
 
     private final CartSummaryRepository cartSummaryRepository;
-    private final CartRepository cartRepository;
 
     @Override
     public CartSummary getCartSummaryById(Long cartSummaryId) {

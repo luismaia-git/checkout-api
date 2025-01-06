@@ -1,5 +1,6 @@
 package com.qikserve.checkout.service.cart.item;
 
+import com.qikserve.checkout.exception.cart.InvalidCartItemQuantityException;
 import com.qikserve.checkout.exception.cart.notfound.CartItemNotFoundException;
 import com.qikserve.checkout.model.entities.cart.*;
 import com.qikserve.checkout.repository.cart.CartItemRepository;
@@ -30,11 +31,15 @@ public class CartItemServiceImpl implements ICartItemService {
 
     @Override
     public CartItem getCartItemById(Long cartItemId) {
+
         return cartItemRepository.findById(cartItemId).orElseThrow(()-> CartItemNotFoundException.of(cartItemId));
     }
 
     @Override
     public void updateQuantityCartItem(Long cartItemId, int quantity) {
+        if(quantity <= 0){
+            throw InvalidCartItemQuantityException.of(cartItemId);
+        }
         CartItem cartItem = cartItemRepository.findById(cartItemId).orElseThrow(()-> CartItemNotFoundException.of(cartItemId));
         cartItem.setQuantity(quantity);
         cartItemRepository.save(cartItem);
