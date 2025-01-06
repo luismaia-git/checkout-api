@@ -93,6 +93,8 @@ The API is organized around these resources:
 * **Tenant (`/tenants`, `TenantController`):**
     * `GET /tenants`: Retrieves tenants
     * `GET /tenants/{id}`: Retrieves a specific tenant by ID.
+    * `GET /tenants/{id}/products`: Retrieves a list of products for a specific tenant.
+    * `GET /tenants/{id}/products/{productId}`: Retrieves a specific product by ID for a specific tenant.
     * `PUT /tenants/{id}`: Updates the `name`,`baseUrl` or `mappers` of a tenant.  
     * `DELETE /tenants/{id}`: Deletes a tenant.
     * `POST /tenants`: Adds a new tenant.  Requires `name`, `baseUrl`, and `mappers`.  
