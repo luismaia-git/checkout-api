@@ -206,7 +206,6 @@ public class CartServiceImpl implements ICartService {
         cartSummary.setPriceSummary(savings);
         cartSummary.setCheckoutDate(LocalDateTime.now());
         cartSummary.setItems(checkoutItems);
-        printProductMapPromotions(productMapPromotions);
        return cartSummary;
 
     }
