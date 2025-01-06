@@ -231,13 +231,18 @@ public class CartServiceImpl implements ICartService {
 
     @Override
     public List<Cart> getAllCarts() {
-        return cartRepository.findAll();
+
+        List<Cart> carts = cartRepository.findAll();
+        return carts.stream()
+                .map(cart -> cart.withItemsCount(cart.getItems().size()))
+                .collect(Collectors.toList());
     }
 
 
     @Override
     public Cart getCartById (Long cartId) {
-        return cartRepository.findById(cartId).orElseThrow( () -> CartNotFoundException.of(cartId));
+        Cart cart = cartRepository.findById(cartId).orElseThrow( () -> CartNotFoundException.of(cartId));
+        return cart.withItemsCount(cart.getItems().size());
     }
 
     public void updateStatusCart(Long cartId, CartStatus status){
