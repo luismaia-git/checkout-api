@@ -1,10 +1,7 @@
 package com.qikserve.checkout.service.cart.summary;
 
-import com.qikserve.checkout.exception.cart.notfound.CartNotFoundException;
 import com.qikserve.checkout.exception.cart.notfound.CartSummaryNotFoundException;
-import com.qikserve.checkout.model.entities.cart.Cart;
 import com.qikserve.checkout.model.entities.cart.CartSummary;
-import com.qikserve.checkout.repository.cart.CartRepository;
 import com.qikserve.checkout.repository.cart.CartSummaryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
