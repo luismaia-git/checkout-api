@@ -1,0 +1,169 @@
+2025-01-06 11:30:09.163 Verbose logging enabled
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2025-01-06 11:30:10.530 Verbose logging enabled
+ /$$      /$$ /$$                     /$$      /$$                     /$$      
+| $$  /$ | $$|__/                    | $$$    /$$$                    | $$      
+| $$ /$$$| $$ /$$  /$$$$$$   /$$$$$$ | $$$$  /$$$$  /$$$$$$   /$$$$$$$| $$   /$$
+| $$/$$ $$ $$| $$ /$$__  $$ /$$__  $$| $$ $$/$$ $$ /$$__  $$ /$$_____/| $$  /$$/
+| $$$$_  $$$$| $$| $$  \__/| $$$$$$$$| $$  $$$| $$| $$  \ $$| $$      | $$$$$$/ 
+| $$$/ \  $$$| $$| $$      | $$_____/| $$\  $ | $$| $$  | $$| $$      | $$_  $$ 
+| $$/   \  $$| $$| $$      |  $$$$$$$| $$ \/  | $$|  $$$$$$/|  $$$$$$$| $$ \  $$
+|__/     \__/|__/|__/       \_______/|__/     |__/ \______/  \_______/|__/  \__/
+
+port:                         8084
+enable-browser-proxying:      false
+no-request-journal:           false
+verbose:                      true
+
+2025-01-06 12:47:43.587 Request received:
+0:0:0:0:0:0:0:1 - GET /products
+
+User-Agent: [insomnia/10.1.1]
+Accept: [*/*]
+Host: [localhost:8084]
+
+
+
+Matched response definition:
+{
+  "status" : 200,
+  "body" : "[{\"productId\":\"Dwt5F7KAhi\",\"productName\":\"Amazing Pizza!\",\"price\":1499},{\"productId\":\"PWWe3w1SDU\",\"productName\":\"Amazing Burger!\",\"price\":789},{\"productId\":\"C8GDyLrHJb\",\"productName\":\"Amazing Salad!\",\"price\":299},{\"productId\":\"4MB7UfpTQs\",\"productName\":\"Boring Fries!\",\"price\":159}]",
+  "headers" : {
+    "Content-Type" : "application/json"
+  }
+}
+
+Response:
+HTTP/1.1 200
+Content-Type: [application/json]
+
+[{"productId":"Dwt5F7KAhi","productName":"Amazing Pizza!","price":1499},{"productId":"PWWe3w1SDU","productName":"Amazing Burger!","price":789},{"productId":"C8GDyLrHJb","productName":"Amazing Salad!","price":299},{"productId":"4MB7UfpTQs","productName":"Boring Fries!","price":159}]
+
+2025-01-06 13:24:12.668 Request received:
+0:0:0:0:0:0:0:1 - GET /products
+
+Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7]
+Connection: [keep-alive]
+User-Agent: [Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36]
+Sec-Fetch-Site: [none]
+Sec-Fetch-Dest: [document]
+Host: [localhost:8084]
+Accept-Encoding: [gzip, deflate, br, zstd]
+Sec-Fetch-Mode: [navigate]
+sec-ch-ua: ["Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"]
+sec-ch-ua-mobile: [?0]
+Upgrade-Insecure-Requests: [1]
+sec-ch-ua-platform: ["Windows"]
+Sec-Fetch-User: [?1]
+Accept-Language: [en,pt-BR;q=0.9,pt;q=0.8,en-US;q=0.7,fr;q=0.6]
+
+
+
+Matched response definition:
+{
+  "status" : 200,
+  "body" : "[{\"productId\":\"Dwt5F7KAhi\",\"productName\":\"Amazing Pizza!\",\"price\":1499},{\"productId\":\"PWWe3w1SDU\",\"productName\":\"Amazing Burger!\",\"price\":789},{\"productId\":\"C8GDyLrHJb\",\"productName\":\"Amazing Salad!\",\"price\":299},{\"productId\":\"4MB7UfpTQs\",\"productName\":\"Boring Fries!\",\"price\":159}]",
+  "headers" : {
+    "Content-Type" : "application/json"
+  }
+}
+
+Response:
+HTTP/1.1 200
+Content-Type: [application/json]
+
+[{"productId":"Dwt5F7KAhi","productName":"Amazing Pizza!","price":1499},{"productId":"PWWe3w1SDU","productName":"Amazing Burger!","price":789},{"productId":"C8GDyLrHJb","productName":"Amazing Salad!","price":299},{"productId":"4MB7UfpTQs","productName":"Boring Fries!","price":159}]
+
+2025-01-06 13:24:12.799 
+                                               Request was not matched
+                                               =======================
+
+-----------------------------------------------------------------------------------------------------------------------
+| Closest stub                                             | Request                                                  |
+-----------------------------------------------------------------------------------------------------------------------
+                                                           |
+GET                                                        | GET
+/products                                                  | /favicon.ico                                        <<<<< URL does not match
+                                                           |
+                                                           |
+-----------------------------------------------------------------------------------------------------------------------
+
+2025-01-06 13:24:12.801 Request received:
+0:0:0:0:0:0:0:1 - GET /favicon.ico
+
+Accept: [image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8]
+Connection: [keep-alive]
+User-Agent: [Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36]
+Referer: [http://localhost:8084/products]
+Sec-Fetch-Site: [same-origin]
+Sec-Fetch-Dest: [image]
+Host: [localhost:8084]
+Accept-Encoding: [gzip, deflate, br, zstd]
+Sec-Fetch-Mode: [no-cors]
+sec-ch-ua: ["Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"]
+sec-ch-ua-mobile: [?0]
+sec-ch-ua-platform: ["Windows"]
+Accept-Language: [en,pt-BR;q=0.9,pt;q=0.8,en-US;q=0.7,fr;q=0.6]
+
+
+
+Matched response definition:
+(no response definition configured)
+
+Response:
+HTTP/1.1 404
+(no headers)
+
+
+2025-01-06 13:24:12.830 Received request to /not-matched with body 
+2025-01-06 13:29:54.389 Request received:
+0:0:0:0:0:0:0:1 - GET /products
+
+User-Agent: [insomnia/10.1.1]
+Accept: [*/*]
+Host: [localhost:8084]
+
+
+
+Matched response definition:
+{
+  "status" : 200,
+  "body" : "[{\"productId\":\"Dwt5F7KAhi\",\"productName\":\"Amazing Pizza!\",\"price\":1499},{\"productId\":\"PWWe3w1SDU\",\"productName\":\"Amazing Burger!\",\"price\":789},{\"productId\":\"C8GDyLrHJb\",\"productName\":\"Amazing Salad!\",\"price\":299},{\"productId\":\"4MB7UfpTQs\",\"productName\":\"Boring Fries!\",\"price\":159}]",
+  "headers" : {
+    "Content-Type" : "application/json"
+  }
+}
+
+Response:
+HTTP/1.1 200
+Content-Type: [application/json]
+
+[{"productId":"Dwt5F7KAhi","productName":"Amazing Pizza!","price":1499},{"productId":"PWWe3w1SDU","productName":"Amazing Burger!","price":789},{"productId":"C8GDyLrHJb","productName":"Amazing Salad!","price":299},{"productId":"4MB7UfpTQs","productName":"Boring Fries!","price":159}]
+
+2025-01-06 13:32:48.771 Request received:
+0:0:0:0:0:0:0:1 - GET /products
+
+User-Agent: [insomnia/10.1.1]
+Accept: [*/*]
+Host: [localhost:8084]
+
+
+
+Matched response definition:
+{
+  "status" : 200,
+  "body" : "[{\"productId\":\"Dwt5F7KAhi\",\"productName\":\"Amazing Pizza!\",\"price\":1499},{\"productId\":\"PWWe3w1SDU\",\"productName\":\"Amazing Burger!\",\"price\":789},{\"productId\":\"C8GDyLrHJb\",\"productName\":\"Amazing Salad!\",\"price\":299},{\"productId\":\"4MB7UfpTQs\",\"productName\":\"Boring Fries!\",\"price\":159}]",
+  "headers" : {
+    "Content-Type" : "application/json"
+  }
+}
+
+Response:
+HTTP/1.1 200
+Content-Type: [application/json]
+
+[{"productId":"Dwt5F7KAhi","productName":"Amazing Pizza!","price":1499},{"productId":"PWWe3w1SDU","productName":"Amazing Burger!","price":789},{"productId":"C8GDyLrHJb","productName":"Amazing Salad!","price":299},{"productId":"4MB7UfpTQs","productName":"Boring Fries!","price":159}]
+
+2025-01-06 15:10:48.178 Received request to /shutdown with body 

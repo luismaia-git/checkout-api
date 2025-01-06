@@ -35,4 +35,6 @@ public class Cart {
     @EqualsAndHashCode.Exclude
     private List<CartItem> items;
 
+    @Transient
+    private int itemsCount;
 }

@@ -20,11 +20,11 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tenantInterceptor)
                 .addPathPatterns(
-                        "/api/cartItem/**",
-                        "/api/cart/**"
+                        "/cartItems/**",
+                        "/carts/**"
                 )
-                .excludePathPatterns("/api/tenants",
-                        "/api/tenants/**"
+                .excludePathPatterns("/tenants",
+                        "/tenants/**"
                 );
     }
 }

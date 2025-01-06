@@ -1,0 +1,17 @@
+[
+  {
+    "port": 8082,
+    "log_file": "./wiremock1/wiremock1.log",
+    "root_dir": "./wiremock1"
+  },
+  {
+    "port": 8083,
+    "log_file": "./wiremock2/wiremock2.log",
+    "root_dir": "./wiremock2"
+  },
+  {
+    "port": 8084,
+    "log_file": "./wiremock3/wiremock3.log",
+    "root_dir": "./wiremock3"
+  }
+]

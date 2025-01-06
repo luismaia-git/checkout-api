@@ -1,6 +1,6 @@
 package com.qikserve.checkout.controller;
 
-import com.qikserve.checkout.model.dto.Savings;
+import com.qikserve.checkout.model.dto.CartSavingsDTO;
 import com.qikserve.checkout.model.entities.cart.Cart;
 import com.qikserve.checkout.model.entities.cart.CartItem;
 import com.qikserve.checkout.model.entities.cart.CartSummary;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cart")
+@RequestMapping("/carts")
 @RequiredArgsConstructor
 public class CartController {
 
@@ -82,12 +82,11 @@ public class CartController {
         return ResponseEntity.ok(response);
     }
 
+
     @GetMapping("/{cartId}/savings")
-    public ResponseEntity<Savings> cartSavings(@PathVariable Long cartId) {
-        Savings response = this.cartService.evaluateCart(cartId).getPriceSummary();
+    public ResponseEntity<CartSavingsDTO> cartSavings(@PathVariable Long cartId) {
+        CartSavingsDTO response = this.cartService.cartSavings(cartId);
         return ResponseEntity.ok(response);
     }
-
-
 
 }
