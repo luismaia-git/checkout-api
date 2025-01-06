@@ -11,7 +11,6 @@ import com.qikserve.checkout.multitenancy.model.entity.Tenant;
 import com.qikserve.checkout.multitenancy.service.MappingService;
 import com.qikserve.checkout.multitenancy.service.TenantService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
@@ -27,16 +26,6 @@ public class WiremockService {
     private final TenantService tenantService;
     private final MappingService mappingService;
 
-    private <T> T get(String url, Class<T> responseType) {
-        try {
-            ResponseEntity<T> response = restTemplate.getForEntity(url, responseType);
-            return response.getBody();
-        } catch (ResourceAccessException exception) {
-            throw WiremockUnavailableException.of(url);
-        }
-    }
-
-
     public Product findById(String productId) {
         String tenantId = TenantContext.getCurrentTenant();
 
@@ -47,8 +36,13 @@ public class WiremockService {
 
         String baseUrl = tenant.getBaseUrl();
         String url = baseUrl + "/products/"+productId;
+        Map<String, Object> externalProduct;
 
-        Map<String, Object> externalProduct = restTemplate.getForObject(url, Map.class);
+        try {
+            externalProduct = restTemplate.getForObject(url, Map.class);
+        } catch (ResourceAccessException exception) {
+            throw WiremockUnavailableException.of(url);
+        }
 
         if (externalProduct == null) {
             throw ProductNotFoundException.of(productId);
@@ -76,7 +70,15 @@ public class WiremockService {
         String baseUrl = tenant.getBaseUrl();
         String url = baseUrl + "/products";
 
-        List<Map<String, Object>> rawProducts = restTemplate.getForObject(url, List.class);
+        List<Map<String, Object>> rawProducts;
+
+        try {
+            rawProducts = restTemplate.getForObject(url, List.class);
+        } catch (ResourceAccessException exception) {
+            throw WiremockUnavailableException.of(url);
+        }
+
+
 
         if(rawProducts == null) {
             return List.of();
