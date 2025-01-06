@@ -29,4 +29,7 @@ public class Tenant {
     @Column(name = "base_url", nullable = false)
     private String baseUrl;
 
+    @NotNull
+    @Lob
+    private String mappers;
 }

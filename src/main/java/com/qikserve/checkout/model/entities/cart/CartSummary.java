@@ -1,11 +1,9 @@
 package com.qikserve.checkout.model.entities.cart;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.qikserve.checkout.model.dto.CheckoutCartItem;
 import com.qikserve.checkout.model.dto.Savings;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -1,11 +1,13 @@
 package com.qikserve.checkout.service.cart;
 
+import com.qikserve.checkout.exception.cart.CartAlreadyCheckedOutException;
 import com.qikserve.checkout.exception.cart.CartNotOpenException;
 import com.qikserve.checkout.exception.cart.CheckoutFailedCartEmpty;
 import com.qikserve.checkout.exception.cart.notfound.CartItemNotFoundException;
 import com.qikserve.checkout.exception.cart.notfound.CartNotFoundException;
 import com.qikserve.checkout.exception.tenant.TenantMismatchException;
 import com.qikserve.checkout.exception.tenant.TenantNotFoundException;
+import com.qikserve.checkout.model.dto.CartSavingsDTO;
 import com.qikserve.checkout.model.dto.CheckoutCartItem;
 import com.qikserve.checkout.model.dto.Savings;
 import com.qikserve.checkout.model.dto.promotion.PromotionApplied;
@@ -92,6 +94,10 @@ public class CartServiceImpl implements ICartService {
     public CartSummary checkout(Long cartId) {
 
         Cart cartFound = this.getCartById(cartId);
+
+        if(cartFound.getStatus().equals(CartStatus.CHECKOUT)){
+            throw CartAlreadyCheckedOutException.of(cartFound.getId());
+        }
 
         if(!(cartFound.getStatus().equals(CartStatus.OPEN))){
             throw CartNotOpenException.of(cartFound.getId());
@@ -265,6 +271,15 @@ public class CartServiceImpl implements ICartService {
         return cart;
     }
 
+    @Override
+    public CartSavingsDTO cartSavings(Long cartId) {
+        Savings savings = evaluateCart(cartId).getPriceSummary();
+        return CartSavingsDTO.builder()
+                .cartId(cartId)
+                .savings(savings)
+                .total(this.getCartSummaryByCartId(cartId).getTotal())
+                .build();
+    }
     public void printProductMapPromotions(Map<String, PromotionApplied> productMapPromotions) {
         for (Map.Entry<String, PromotionApplied> entry : productMapPromotions.entrySet()) {
             String productId = entry.getKey();

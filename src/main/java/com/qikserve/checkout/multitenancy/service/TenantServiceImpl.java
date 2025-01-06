@@ -5,6 +5,7 @@ import com.qikserve.checkout.multitenancy.model.entity.Tenant;
 import com.qikserve.checkout.multitenancy.repository.TenantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,25 +28,33 @@ public class TenantServiceImpl implements TenantService {
 
     @Override
     public Tenant createTenant(Tenant tenant) {
+
         Tenant tenantBuilt = Tenant.builder()
-                .id(tenant.getId())
                 .baseUrl(tenant.getBaseUrl())
                 .name(tenant.getName())
+                .mappers(tenant.getMappers())
                 .build();
+
         return tenantRepository.save(tenantBuilt);
     }
 
     @Override
     public Tenant updateTenant(String tenantId, Tenant tenant) {
         Tenant tenantFound = this.findByTenantId(tenantId);
-        tenantFound.setId(tenant.getId());
         tenantFound.setName(tenant.getName());
         tenantFound.setBaseUrl(tenant.getBaseUrl());
+        tenantFound.setMappers(tenant.getMappers());
         return tenantRepository.save(tenantFound);
+    }
 
+    public Tenant updateTenantMappers(String tenantId, String mappers) {
+        Tenant tenantFound = this.findByTenantId(tenantId);
+        tenantFound.setMappers(mappers);
+        return tenantRepository.save(tenantFound);
     }
 
     @Override
+    @Transactional
     public void deleteTenant(String tenantId) {
         Tenant tenant = this.findByTenantId(tenantId);
         tenantRepository.delete(tenant);

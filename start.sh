@@ -5,12 +5,13 @@ start_wiremock() {
   local host="localhost"
   local port=$1
   local log_file=$2
+  local root_dir=$3
 
   WIREMOCK_RUNNING=$(ps aux | grep "wiremock-standalone.*--port $port" | grep -v grep)
 
   if [ -z "$WIREMOCK_RUNNING" ]; then
     echo "WireMock on port $port is not running. Starting WireMock..."
-    java -jar ./wiremock1/wiremock-standalone-2.14.0.jar --port $port --verbose &> $log_file 2>&1 &
+    java -jar ./wiremock1/wiremock-standalone-2.14.0.jar --port $port --root-dir $root_dir --verbose &> $log_file 2>&1 &
     echo "WireMock started on host $host and port $port. PID: $!"
   else
     echo "WireMock on port $port is already running."
@@ -39,6 +40,6 @@ start_postgres() {
 start_postgres
 
 # Start WireMock instances
-start_wiremock 8082 ./wiremock1/wiremock.log
-start_wiremock 8083 ./wiremock2/wiremock2.log
-
+start_wiremock 8082 ./wiremock1/wiremock.log ./wiremock1
+start_wiremock 8083 ./wiremock2/wiremock2.log ./wiremock2
+start_wiremock 8084 ./wiremock3/wiremock3.log ./wiremock3

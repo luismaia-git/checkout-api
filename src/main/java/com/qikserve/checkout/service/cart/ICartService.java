@@ -1,15 +1,12 @@
 package com.qikserve.checkout.service.cart;
 
-import com.qikserve.checkout.model.dto.Savings;
+import com.qikserve.checkout.model.dto.CartSavingsDTO;
 import com.qikserve.checkout.model.entities.cart.*;
 
 import java.util.List;
 
 public interface ICartService {
-    /**
-     * @param cartId the cart to calculate the summary.
-     * @return resume of the cart.
-     */
+
     CartSummary checkout(Long cartId);
     Cart createCart();
     List<Cart> getAllCarts();
@@ -24,4 +21,5 @@ public interface ICartService {
     CartSummary getCartSummaryByCartId(Long cartId);
     CartSummary evaluateCart(Long cartId);
     Cart groupItems(Cart cart);
+    CartSavingsDTO cartSavings(Long cartId);
 }

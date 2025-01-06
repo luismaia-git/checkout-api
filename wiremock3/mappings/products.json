@@ -1,0 +1,35 @@
+{
+  "priority": 10,
+  "request": {
+    "method": "GET",
+    "urlPattern": "/products"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": [
+      {
+        "productId": "Dwt5F7KAhi",
+        "productName": "Amazing Pizza!",
+        "price": 1499
+      },
+      {
+        "productId": "PWWe3w1SDU",
+        "productName": "Amazing Burger!",
+        "price": 789
+      },
+      {
+        "productId": "C8GDyLrHJb",
+        "productName": "Amazing Salad!",
+        "price": 299
+      },
+      {
+        "productId": "4MB7UfpTQs",
+        "productName": "Boring Fries!",
+        "price": 159
+      }
+    ]
+  }
+}
