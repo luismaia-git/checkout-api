@@ -6,6 +6,7 @@ import com.qikserve.checkout.model.entities.cart.CartItem;
 import com.qikserve.checkout.model.entities.cart.CartSummary;
 import com.qikserve.checkout.service.cart.ICartService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 public class CartController {
 
     private final ICartService cartService;
+    private final MessageSource messageSource;
 
     @PostMapping
     public ResponseEntity<Cart> createCart() {
@@ -43,9 +45,9 @@ public class CartController {
     }
 
     @PostMapping("/{cartId}/item")
-    public ResponseEntity<Void> addCartItems(@PathVariable Long cartId, @RequestBody List<CartItem> cartItems){
-        this.cartService.addCartItems(cartId, cartItems);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<List<CartItem>> addCartItems(@PathVariable Long cartId, @RequestBody List<CartItem> cartItems){
+        List<CartItem> items = this.cartService.addCartItems(cartId, cartItems);
+        return ResponseEntity.ok(items);
     }
 
 
@@ -53,7 +55,7 @@ public class CartController {
     public ResponseEntity<String> removeCartItem(@PathVariable Long cartId, @PathVariable Long cartItemId){
         this.cartService.removeItem(cartId, cartItemId);
 
-        return ResponseEntity.ok("Item with id " + cartItemId + " removed");
+        return ResponseEntity.ok(messageSource.getMessage("cart.item.removed", new Object[]{cartItemId}, null));
     }
 
     @PostMapping("{cartId}/clear")

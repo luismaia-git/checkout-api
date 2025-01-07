@@ -11,5 +11,4 @@ public interface TenantService {
     Tenant updateTenant(String tenantId, Tenant tenant);
     Tenant updateTenantMappers(String tenantId, String mappers);
     void deleteTenant(String tenantId);
-
 }
