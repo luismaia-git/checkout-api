@@ -45,7 +45,7 @@ public class CartController {
         return ResponseEntity.ok(items);
     }
 
-
+    @Deprecated
     @DeleteMapping("/{cartId}/item/{cartItemId}")
     public ResponseEntity<String> removeCartItem(@PathVariable Long cartId, @PathVariable Long cartItemId){
         this.cartService.getCartById(cartId);

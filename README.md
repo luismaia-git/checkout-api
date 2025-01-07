@@ -83,7 +83,6 @@ The API is organized around these resources:
     * `GET /carts/{id}`: Retrieves a specific cart by ID.  Returns the full cart representation. 
     * `GET /carts/{id}/summary`: Retrieves a specific cart summary by cart ID for an CHECKOUT cart.
     * `GET /carts/{id}/savings`: Calculates and returns the total savings for an OPEN cart based on applied promotions.
-    * `DELETE /carts/{id}/item/{cartItemId}`: Removes item from an OPEN cart.
 
 * **Cart Items (`/cartItems`, `CartItemController`):**
     * `GET /cartItems`: Retrieves cart items.
