@@ -78,7 +78,7 @@ public class TenantServiceTest {
         tenantService.deleteTenant(tenantId);
 
         // Then
-        verify(tenantRepository, times(1)).deleteById(tenantId);
+        verify(tenantRepository, times(1)).delete(tenant);
     }
 
     @Test

@@ -115,7 +115,7 @@ public class CartServiceTest {
         when(cartItemRepository.saveAll(any())).thenReturn(List.of(cartItem));
         // When
         var result = cartService.addCartItems(id, List.of(cartItem));
-        System.out.println(result);
+
         // Then
         assertEquals(cartItem, result.get(0));
     }
