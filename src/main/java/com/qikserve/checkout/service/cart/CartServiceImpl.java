@@ -88,7 +88,7 @@ public class CartServiceImpl implements ICartService {
         }
 
         CartItem cartItem = cartItemRepository.findById(cartItemId).orElseThrow(() -> CartItemNotFoundException.of(cartItemId));
-        cartItemRepository.delete(cartItem);
+        cartItemRepository.deleteById(cartItem.getId());
     }
 
     public CartSummary checkout(Long cartId) {
