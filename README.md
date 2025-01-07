@@ -71,13 +71,14 @@ The system revolves around four key entities:
 ## II. API Endpoints
 
 The API is organized around these resources:
+* **In the header of your requests in `/carts` and `/cartItems`, add the X-TENANT-ID with the value of the tenantId created in the `POST /tenants` route.**
 
 * **Carts (`/carts`, `CartController`):**
     * `GET /carts`: Retrieves a list of carts. 
     * `POST /carts`: Creates a new cart.  Optionally accepts an initial list of items.  Returns the newly created cart's ID.
     * `POST /carts/{id}/item`: Adds a new item to an OPEN cart.
     * `POST /carts/{id}/clear`: Removes all items from a cart.
-    * `POST /carts/{id}/cancel`: Updates the cart status to CANCEL.
+    * `POST /carts/{id}/cancel`: Updates the cart status to CANCELED.
     * `POST /carts/{id}/checkout`: Completes the checkout process. Applies promotions, calculates the final total, and updates the cart status to CHECKOUT.
     * `GET /carts/{id}`: Retrieves a specific cart by ID.  Returns the full cart representation. Supports grouped filter to group cartItems that contain the same productId. `GET /carts/{id}?filter=grouped`.
     * `GET /carts/{id}/summary`: Retrieves a specific cart summary by cart ID for an CHECKOUT cart.
@@ -98,7 +99,7 @@ The API is organized around these resources:
     * `PUT /tenants/{id}`: Updates the `name`,`baseUrl` or `mappers` of a tenant.  
     * `DELETE /tenants/{id}`: Deletes a tenant.
     * `POST /tenants`: Adds a new tenant.  Requires `name`, `baseUrl`, and `mappers`.  
-    `mappers` must respect the formatting of the application domain, example: \
+    `mappers` must respect the formatting of the application domain, wiremock/mappings -> domain example: \
     `"mappers": "{ \"product\": { \"id\": \"productId\", \"name\": \"productName\", \"price\": \"price\" }, \"promotion\": { \"id\": \"promotionId\", \"type\": \"promotionType\", \"amount\": \"amount\", \"required_qty\": \"required_qty\", \"price\": \"price\", \"free_qty\": \"free_qty\" } }"`
 
 
