@@ -28,6 +28,6 @@ public class Tenant {
     private String baseUrl;
 
     @NotNull
-    @Lob
+    @Column(name = "mappers", nullable = false)
     private String mappers;
 }

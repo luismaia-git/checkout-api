@@ -80,7 +80,7 @@ The API is organized around these resources:
     * `POST /carts/{id}/clear`: Removes all items from a cart.
     * `POST /carts/{id}/cancel`: Updates the cart status to CANCELED.
     * `POST /carts/{id}/checkout`: Completes the checkout process. Applies promotions, calculates the final total, and updates the cart status to CHECKOUT.
-    * `GET /carts/{id}`: Retrieves a specific cart by ID.  Returns the full cart representation. Supports grouped filter to group cartItems that contain the same productId. `GET /carts/{id}?filter=grouped`.
+    * `GET /carts/{id}`: Retrieves a specific cart by ID.  Returns the full cart representation. 
     * `GET /carts/{id}/summary`: Retrieves a specific cart summary by cart ID for an CHECKOUT cart.
     * `GET /carts/{id}/savings`: Calculates and returns the total savings for an OPEN cart based on applied promotions.
     * `DELETE /carts/{id}/item/{cartItemId}`: Removes item from an OPEN cart.
@@ -89,7 +89,7 @@ The API is organized around these resources:
     * `GET /cartItems`: Retrieves cart items.
     * `GET /cartItems/{id}`: Retrieves a specific cart item by ID.
     * `PATCH /cartItems/{id}`: Updates the `quantity` of a cart item.  Validates that the new quantity is greater than zero (`InvalidCartItemQuantityException`). 
-    * `DELETE /cartItems/{id}`: Deletes a cart item.
+    * `DELETE /cartItems/{id}`: Removes item from an OPEN cart.
     * `POST /cartItems`: Adds a new item to an OPEN cart.  Requires `cartId`, `productId`, and `quantity`.  Validates that the quantity is greater than zero.
 * **Tenant (`/tenants`, `TenantController`):**
     * `GET /tenants`: Retrieves tenants

@@ -1,6 +1,7 @@
 package com.qikserve.checkout.multitenancy.service;
 
 import com.qikserve.checkout.exception.tenant.TenantNotFoundException;
+import com.qikserve.checkout.multitenancy.model.dto.TenantUpdateDTO;
 import com.qikserve.checkout.multitenancy.model.entity.Tenant;
 import com.qikserve.checkout.multitenancy.repository.TenantRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +40,7 @@ public class TenantServiceImpl implements TenantService {
     }
 
     @Override
-    public Tenant updateTenant(String tenantId, Tenant tenant) {
+    public Tenant updateTenant(String tenantId, TenantUpdateDTO tenant) {
         Tenant tenantFound = this.findByTenantId(tenantId);
         tenantFound.setName(tenant.getName());
         tenantFound.setBaseUrl(tenant.getBaseUrl());
@@ -59,5 +60,4 @@ public class TenantServiceImpl implements TenantService {
         Tenant tenant = this.findByTenantId(tenantId);
         tenantRepository.delete(tenant);
     }
-
 }

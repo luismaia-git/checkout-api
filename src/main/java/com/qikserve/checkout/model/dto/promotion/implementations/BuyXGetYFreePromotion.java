@@ -5,23 +5,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.qikserve.checkout.model.dto.promotion.PromotionApplied;
 import com.qikserve.checkout.model.dto.promotion.base.AbstractPromotion;
 import com.qikserve.checkout.model.dto.promotion.base.PromotionType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BuyXGetYFreePromotion extends AbstractPromotion {
-    private String id;;
+    private String id;
 
     @JsonProperty("required_qty")
     private int requiredQty;

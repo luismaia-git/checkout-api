@@ -4,6 +4,7 @@ import com.qikserve.checkout.model.dto.product.Product;
 import com.qikserve.checkout.multitenancy.context.TenantContext;
 import com.qikserve.checkout.multitenancy.model.dto.TenantMappersDTO;
 import com.qikserve.checkout.multitenancy.model.dto.TenantProductDTO;
+import com.qikserve.checkout.multitenancy.model.dto.TenantUpdateDTO;
 import com.qikserve.checkout.multitenancy.model.entity.Tenant;
 import com.qikserve.checkout.multitenancy.service.TenantService;
 import com.qikserve.checkout.service.WiremockService;
@@ -49,7 +50,7 @@ public class TenantController {
     @PutMapping(value="/{tenantId}")
     public ResponseEntity<Tenant> updateTenant(
             @PathVariable String tenantId,
-            @RequestBody Tenant tenant) {
+            @RequestBody TenantUpdateDTO tenant) {
 
         return ResponseEntity.ok(tenantService.updateTenant(tenantId, tenant));
     }

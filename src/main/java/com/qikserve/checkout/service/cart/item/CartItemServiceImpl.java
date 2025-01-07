@@ -2,7 +2,11 @@ package com.qikserve.checkout.service.cart.item;
 
 import com.qikserve.checkout.exception.cart.InvalidCartItemQuantityException;
 import com.qikserve.checkout.exception.cart.notfound.CartItemNotFoundException;
+import com.qikserve.checkout.exception.tenant.TenantNotFoundException;
 import com.qikserve.checkout.model.entities.cart.*;
+import com.qikserve.checkout.multitenancy.context.TenantContext;
+import com.qikserve.checkout.multitenancy.model.entity.Tenant;
+import com.qikserve.checkout.multitenancy.service.TenantService;
 import com.qikserve.checkout.repository.cart.CartItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +18,8 @@ import java.util.List;
 public class CartItemServiceImpl implements ICartItemService {
 
     private final CartItemRepository cartItemRepository;
+
+    private final TenantService tenantService;
 
     @Override
     public CartItem createCartItem(CartItem cartItem) {
@@ -31,7 +37,6 @@ public class CartItemServiceImpl implements ICartItemService {
 
     @Override
     public CartItem getCartItemById(Long cartItemId) {
-
         return cartItemRepository.findById(cartItemId).orElseThrow(()-> CartItemNotFoundException.of(cartItemId));
     }
 

@@ -11,7 +11,6 @@ public interface ICartService {
     Cart createCart();
     List<Cart> getAllCarts();
     List<CartItem> addCartItems(Long cartId, List<CartItem> cartItems);
-    void removeItem(Long cartId, Long cartItemId);
     Cart getCartById (Long cartId);
     void updateStatusCart(Long cartId, CartStatus status);
     void cancel(Long cartId);

@@ -3,7 +3,6 @@ package com.qikserve.checkout.service.cart;
 import com.qikserve.checkout.exception.cart.CartAlreadyCheckedOutException;
 import com.qikserve.checkout.exception.cart.CartNotOpenException;
 import com.qikserve.checkout.exception.cart.CheckoutFailedCartEmpty;
-import com.qikserve.checkout.exception.cart.notfound.CartItemNotFoundException;
 import com.qikserve.checkout.exception.cart.notfound.CartNotFoundException;
 import com.qikserve.checkout.exception.tenant.TenantMismatchException;
 import com.qikserve.checkout.exception.tenant.TenantNotFoundException;
@@ -24,6 +23,7 @@ import com.qikserve.checkout.service.cart.summary.CartSummaryService;
 import com.qikserve.checkout.service.product.IProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -77,18 +77,6 @@ public class CartServiceImpl implements ICartService {
         return cartItemRepository.saveAll(cartItems.stream()
                 .map(cartItem -> cartItem.withCartId(cartId))
                 .collect(Collectors.toList()));
-    }
-
-    @Override
-    public void removeItem(Long cartId, Long cartItemId) {
-        Cart cart = this.getCartById(cartId);
-
-        if(!cart.getStatus().equals(CartStatus.OPEN)){
-            throw CartNotOpenException.of(cartId);
-        }
-
-        CartItem cartItem = cartItemRepository.findById(cartItemId).orElseThrow(() -> CartItemNotFoundException.of(cartItemId));
-        cartItemRepository.deleteById(cartItem.getId());
     }
 
     public CartSummary checkout(Long cartId) {
@@ -226,7 +214,7 @@ public class CartServiceImpl implements ICartService {
     @Override
     public CartSummary getCartSummaryByCartId(Long cartId) {
         Optional<CartSummary> cart = cartSummaryRepository.findByCartId(cartId);
-        return cart.orElseGet(() -> evaluateCart(cartId));
+        return cart.orElseGet(() -> evaluateCart(cartId).withCheckoutDate(null));
     }
 
     @Override

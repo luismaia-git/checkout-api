@@ -5,6 +5,7 @@ import com.qikserve.checkout.model.entities.cart.Cart;
 import com.qikserve.checkout.model.entities.cart.CartItem;
 import com.qikserve.checkout.model.entities.cart.CartSummary;
 import com.qikserve.checkout.service.cart.ICartService;
+import com.qikserve.checkout.service.cart.item.ICartItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 public class CartController {
 
     private final ICartService cartService;
+    private final ICartItemService cartItemService;
     private final MessageSource messageSource;
 
     @PostMapping
@@ -26,16 +28,9 @@ public class CartController {
     }
 
     @GetMapping("/{cartId}")
-    public ResponseEntity<Cart> getCart(@PathVariable Long cartId , @RequestParam(required = false) String filter) {
+    public ResponseEntity<Cart> getCart(@PathVariable Long cartId ) {
         Cart response = this.cartService.getCartById(cartId);
-
-        if( filter != null && filter.equals("grouped")){
-            Cart cart = this.cartService.groupItems(response);
-            return ResponseEntity.ok(cart);
-        }
-
         return ResponseEntity.ok(response);
-
     }
 
     @GetMapping
@@ -53,7 +48,8 @@ public class CartController {
 
     @DeleteMapping("/{cartId}/item/{cartItemId}")
     public ResponseEntity<String> removeCartItem(@PathVariable Long cartId, @PathVariable Long cartItemId){
-        this.cartService.removeItem(cartId, cartItemId);
+        this.cartService.getCartById(cartId);
+        this.cartItemService.removeCartItem(cartItemId);
 
         return ResponseEntity.ok(messageSource.getMessage("cart.item.removed", new Object[]{cartItemId}, null));
     }
