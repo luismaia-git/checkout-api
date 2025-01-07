@@ -41,7 +41,7 @@ public class CartServiceImpl implements ICartService {
     private final CartSummaryRepository cartSummaryRepository;
     private final TenantService tenantService;
 
-    private String validateTenant() {
+    public String validateTenant() {
         String tenantId = TenantContext.getCurrentTenant();
         Tenant tenant = tenantService.findByTenantId(tenantId);
         if (tenant == null) {
@@ -60,7 +60,7 @@ public class CartServiceImpl implements ICartService {
         return cartRepository.save(cart);
     }
 
-    public void addCartItems(Long cartId, List<CartItem> cartItems) {
+    public List<CartItem> addCartItems(Long cartId, List<CartItem> cartItems) {
         String tenantId = validateTenant();
         Cart cart = this.getCartById(cartId);
 
@@ -74,7 +74,7 @@ public class CartServiceImpl implements ICartService {
 
         productService.validateProducts(cartItems.stream().map(CartItem::getProductId).toList());
 
-        cartItemRepository.saveAll(cartItems.stream()
+        return cartItemRepository.saveAll(cartItems.stream()
                 .map(cartItem -> cartItem.withCartId(cartId))
                 .collect(Collectors.toList()));
     }

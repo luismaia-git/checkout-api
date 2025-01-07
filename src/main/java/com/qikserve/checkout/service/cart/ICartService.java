@@ -10,7 +10,7 @@ public interface ICartService {
     CartSummary checkout(Long cartId);
     Cart createCart();
     List<Cart> getAllCarts();
-    void addCartItems(Long cartId, List<CartItem> cartItems);
+    List<CartItem> addCartItems(Long cartId, List<CartItem> cartItems);
     void removeItem(Long cartId, Long cartItemId);
     Cart getCartById (Long cartId);
     void updateStatusCart(Long cartId, CartStatus status);

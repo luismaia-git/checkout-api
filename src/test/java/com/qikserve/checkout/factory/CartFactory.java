@@ -9,7 +9,7 @@ public class CartFactory {
 
     public static Cart makeCart() {
         return Cart.builder()
-                .tenantId("default-tenant")
+                .tenantId("tenant1")
                 .status(CartStatus.OPEN)
                 .items(new ArrayList<>())
                 .build();
